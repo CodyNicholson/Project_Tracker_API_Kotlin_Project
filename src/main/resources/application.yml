@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/d303tt7dgo2ndl?currentSchema=public
+    username: fxvjpyhzcgofew
+  hikari:
+    minimum-idle: 2
+    maximum-pool-size: 4
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+  config:
+    activate:
+      on-profile: [LOCAL, default, test]
+flyway:
+  url: jdbc:postgresql://localhost:5432/d303tt7dgo2ndl?currentSchema=public
+  schemas: ["public"]
+  user: fxvjpyhzcgofew
+---
+spring:
+  datasource:
+    url: jdbc:postgresql://ec2-54-161-58-21.compute-1.amazonaws.com:5432/d303tt7dgo2ndl?currentSchema=public
+    username: fxvjpyhzcgofew
+    password: ${PSQL_PASSWORD:defaultPassword}
+  hikari:
+    minimum-idle: 2
+    maximum-pool-size: 4
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  config:
+    activate:
+      on-profile: [PROD]
